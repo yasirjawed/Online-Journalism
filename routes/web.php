@@ -8,16 +8,19 @@ Auth::routes();
 Route::get('/', [App\Http\Controllers\Frontend\FrontendController::class, 'index']);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/tutorial/{category_slug}', [App\Http\Controllers\Frontend\FrontendController::class, 'viewCategoryPost']);
+Route::get('/tutorial/{category_slug}/{post_slug}', [App\Http\Controllers\Frontend\FrontendController::class, 'viewPost']);
 
 
 Route::prefix('admin')->middleware('auth','isAdmin')->group(function(){
     Route::get('/dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index']);
     Route::get('category', [App\Http\Controllers\admin\CategoryController::class, 'index']);
+    Route::get('approvalRequest', [App\Http\Controllers\admin\ApprovalRequest::class, 'index']);
     Route::get('add-category', [App\Http\Controllers\admin\CategoryController::class, 'create']);
     Route::post('add-category', [App\Http\Controllers\admin\CategoryController::class, 'store']);
     Route::get('edit-category/{category_id}', [App\Http\Controllers\admin\CategoryController::class, 'edit']);
     Route::put('update-category/{category_id}', [App\Http\Controllers\admin\CategoryController::class, 'update']);
-    Route::get('delete-category/{category_id}', [App\Http\Controllers\admin\CategoryController::class, 'destroy']);
+    // Route::get('delete-category/{category_id}', [App\Http\Controllers\admin\CategoryController::class, 'destroy']);
+    Route::post('delete-category', [App\Http\Controllers\admin\CategoryController::class, 'destroy']);
     Route::get('post', [App\Http\Controllers\admin\PostController::class, 'index']);
     Route::get('add-post', [App\Http\Controllers\admin\PostController::class, 'create']);
     Route::post('add-post', [App\Http\Controllers\admin\PostController::class, 'store']);

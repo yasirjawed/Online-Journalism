@@ -22,8 +22,8 @@
                 <div class="mb-3">
                     <label for="">Category</label>
                     <select name="category_id" id="" class="form-control">
-                        @foreach ($category as $item)
                         <option value="" selected disabled>SELECT CATEGORY</option>
+                        @foreach ($category as $item)
                         <option value="{{$item->id}}">{{$item->name}}</option>
                         @endforeach
 

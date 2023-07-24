@@ -57,6 +57,8 @@
     </script>
     <script>
        $('#myDataTable').DataTable();
+       $('#approvalreq').DataTable();
     </script>
+    @yield('scripts')
 </body>
 </html>
