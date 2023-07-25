@@ -21,7 +21,7 @@
                         </div>
                     @endif
 
-                
+
                 </div>
             </div>
         </div>
@@ -39,11 +39,27 @@
                         <div class="card">
                             <img class="card-img-top" src="{{url('images/blogs.jpg')}}" alt="Card image cap">
                             <div class="card-body blogs">
-                                <h5 class="card-title" class="top-name">{{$Latest_Posts_per->name}}</h5>
-                                <div class="bottom-container">
-                                    <p class="card-title" >{{$Latest_Posts_per->user->name}}</p>
-                                    <img src="{{url('images/persons.png')}}" class="person" alt="" class="person-img">
+                                <div class="col-md-12">
+                                    <h5 class="card-title" class="top-name">{{$Latest_Posts_per->name}}</h5>
                                 </div>
+                                <div class="row">
+                                    <div class="col-md-6" style="margin:auto 0;color:red">
+                                        <p style="font-size:15px">Created On:{{$Latest_Posts_per->created_at->format('d-m-y')}}</p>
+                                    </div>
+                                    <div class="col-md-6 ">
+                                        <div class="row">
+                                            <div class="col-md-12 text-center" style="margin:auto 0">
+                                                <img src="{{url('images/persons.png')}}" class="person" alt="" class="person-img">
+                                            </div>
+                                            <div class="col-md-12 text-center" style="margin:auto 0">
+                                                <p class="card-title" >- {{$Latest_Posts_per->user->name}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
                             </div>
                         </div>
                     </a>
