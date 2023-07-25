@@ -1,43 +1,62 @@
 <div class="golbal-navbar">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3">
-                <img src="{{ asset('assets/images/logonew.png')}}" class="w-100" alt="IMG" srcset="">
-            </div>
-            <div class="col-md-9 my-auto">
-                <div class="border text-center p-2">
-                    <H4>ADVERTISE HERE</H4>
-                </div>
-            </div>
+
+    <nav class="navbar navbar-expand-lg" style="background-color: #000000;">
+
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+          <ul class="navbar-nav navbar-center mr-auto hiding-case-class" style="">
+            <li class="nav-item active">
+              <a class="nav-link" href="{{url('/')}}">Home <span class="sr-only"></span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{url('/correspondents')}}">Correspondents</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{url('/collections')}}">Collections</a>
+              </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{url('/listen')}}">Listen</a>
+            </li>
+
+          </ul>
+
+          <a class="navbar-brand navbar-logo-class" href="#"><img src="{{url('images/logo-nav.png')}}" id="logo-navbar" class="image-fluid" style="display:none"></a>
+          @if (Auth::check())
+            <button type="button" class="btn  button-nav" ><a href="/{{route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" style="">Logout</a></button>
+            <form action="{{route('logout')}}" id="logout-form" class="d-none" method="post">
+                @csrf
+            </form>
+          @else
+          <button type="button" class="btn  button-nav" ><a href="{{url('/login')}}" style="">Login / Signup</a></button>
+            @endif
+
+
+
         </div>
-    </div>
+      </nav>
+      <input type="checkbox" id="openSidebarMenu">
+      <label for="openSidebarMenu" class="sidebarIconToggle" style="position:fixed">
+          <div class="spinner top"></div>
+          <div class="spinner middle"></div>
+          <div class="spinner bottom"></div>
+      </label>
+      <div id="sidebarMenu">
+          <ul class="menu">
+              <li style=""><a href="#">Home<i class="fa-solid fa-chevron-right" style="color: #c62a2a;text-align:end;float: right "></i></a></li>
+              <li><a href="#">Correspondents<i class="fa-solid fa-chevron-right" style="color: #c62a2a;text-align:end;float: right "></i></a></li>
+              <li><a href="#">Collections<i class="fa-solid fa-chevron-right" style="color: #c62a2a;text-align:end;float: right "></i></a></li>
+              <li><a href="#">Listen<i class="fa-solid fa-chevron-right" style="color: #c62a2a;text-align:end;float: right "></i></a></li>
+              <li><a href="#">Videos<i class="fa-solid fa-chevron-right" style="color: #c62a2a;text-align:end;float: right "></i></a></li>
+              <li><a href="#">Founding Principles<i class="fa-solid fa-chevron-right" style="color: #c62a2a;text-align:end;float: right "></i></a></li>
+          </ul>
+          <ul class="menu2">
+              <li style=""><a href="#">Contact</a></li>
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Frequently Asked Questions</a></li>
+              <li><a href="#">Terms And Conditions</a></li>
+              <li><a href="#">Privacy Policy</a></li>
+          </ul>
+      </div>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-green">
-        <div class="container">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item active">
-                <a class="nav-link" href="{{url('/')}}">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-                </li>
-
-                @php
-                    $categories = App\Models\Category::where('navbar_status','0')->where('status','0')->get();
-                @endphp
-                @foreach ($categories as $cateitem)
-                    <li class="nav-item">
-                        <a href="{{ url('tutorial/'.$cateitem->slug)}}" class="nav-link">{{ $cateitem->name }}</a>
-                    </li>
-                @endforeach
-            </ul>
-
-            </div>
-        </div>
-    </nav>
 </div>

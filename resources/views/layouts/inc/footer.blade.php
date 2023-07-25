@@ -1,20 +1,19 @@
 <div class="py-5 bg-dark text-white">
     <div class="container">
         <div class="row">
-            <div class="col-md-6">
-                <h5>Online Journalism</h5>
-                <div class="underline"></div>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugiat ipsam distinctio quibusdam.</p>
+            <div class="col-md-4">
+                <img src="{{url('images/logo-nav3.png')}}" style="width: 200px;height:auto">
             </div>
-            <div class="col-md-3">
+
+            <div class="col-md-4 p-5">
                 <h5>Quick Links</h5>
                 <div class="underline"></div>
                 <div><a href="" class="text-white">Home</a></div>
-                <div><a href="" class="text-white">About Us</a></div>
-                <div><a href="" class="text-white">Contact Us</a></div>
-                <div><a href="" class="text-white">Needs Promotion?</a></div>
+                <div><a href="" class="text-white">Journalists</a></div>
+                <div><a href="" class="text-white">Collections</a></div>
+                <div><a href="" class="text-white">Listen</a></div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4 p-5">
                 <h5>Follow Us On</h5>
                 <div class="underline"></div>
                 <div><a href="" class="text-white">Facebook</a></div>

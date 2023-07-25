@@ -32,10 +32,12 @@ public function authenticated(){
     if(Auth::user()->role_as=='1'){
         return redirect('admin/dashboard')->with('status','Welcome to the admin dashboard');
     }else if(Auth::user()->role_as=='0'){
-        return redirect('/home')->with('status','Succesfully Logged In');
+        return redirect('/')->with('status','You are in the Queue Wait till we grant you access to Online Journalism');
+    }else if(Auth::user()->role_as=='2'){
+        return redirect('/')->with('status','Hey Entrepreneur, Post some good news!');
+
     }else{
         return redirect('/');
-
     }
 }
     /**
