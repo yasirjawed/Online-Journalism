@@ -34,7 +34,7 @@ public function authenticated(){
     }else if(Auth::user()->role_as=='0'){
         return redirect('/')->with('status','You are in the Queue Wait till we grant you access to Online Journalism');
     }else if(Auth::user()->role_as=='2'){
-        return redirect('/')->with('status','Hey Entrepreneur, Post some good news!');
+        return redirect('journalist/dashboard')->with('status','Hey Entrepreneur, Post some good news!');
 
     }else{
         return redirect('/');

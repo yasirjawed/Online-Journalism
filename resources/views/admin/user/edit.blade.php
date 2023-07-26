@@ -30,7 +30,7 @@
                        <select name="role_as" id="" class="form-control">
                            <option value="0" {{$user->role_as=='0'?'selected':''}}>User</option>
                         <option value="1" {{$user->role_as=='1'?'selected':''}}>Admin</option>
-                        <option value="2" {{$user->role_as=='2'?'selected':''}}>Blogger</option>
+                        <option value="2" {{$user->role_as=='2'?'selected':''}}>Journalist</option>
                        </select>
                     </div>
                     <div class="mb-3">

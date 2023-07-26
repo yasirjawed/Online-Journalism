@@ -15,6 +15,7 @@ Route::prefix('admin')->middleware('auth','isAdmin')->group(function(){
     Route::get('/dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index']);
     Route::get('category', [App\Http\Controllers\admin\CategoryController::class, 'index']);
     Route::get('approvalRequest', [App\Http\Controllers\admin\ApprovalRequest::class, 'index']);
+    Route::get('journalistapprovalRequest', [App\Http\Controllers\admin\ApprovalRequest::class, 'UserApproval']);
     Route::get('add-category', [App\Http\Controllers\admin\CategoryController::class, 'create']);
     Route::post('add-category', [App\Http\Controllers\admin\CategoryController::class, 'store']);
     Route::get('edit-category/{category_id}', [App\Http\Controllers\admin\CategoryController::class, 'edit']);
@@ -30,5 +31,14 @@ Route::prefix('admin')->middleware('auth','isAdmin')->group(function(){
     Route::get('/users', [App\Http\Controllers\Admin\UserController::class, 'index']);
     Route::get('users/{user_id}', [App\Http\Controllers\admin\UserController::class, 'edit']);
     Route::put('update-user/{user_id}', [App\Http\Controllers\admin\UserController::class, 'update']);
+});
+Route::prefix('journalist')->middleware('auth','isJournalist')->group(function(){
+    Route::get('/dashboard', [App\Http\Controllers\Journalist\DashboardController::class, 'index']);
+    Route::get('post', [App\Http\Controllers\Journalist\PostController::class, 'index']);
+    Route::get('add-post', [App\Http\Controllers\Journalist\PostController::class, 'create']);
+    Route::post('add-post', [App\Http\Controllers\Journalist\PostController::class, 'store']);
+    Route::get('post/{post_id}', [App\Http\Controllers\Journalist\PostController::class, 'edit']);
+    Route::put('update-post/{post_id}', [App\Http\Controllers\Journalist\PostController::class, 'update']);
+    Route::get('delete-post/{post_id}', [App\Http\Controllers\Journalist\PostController::class, 'destroy']);
 });
 

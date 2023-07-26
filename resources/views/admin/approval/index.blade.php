@@ -14,10 +14,10 @@
                     <th>Category</th>
                     <th>Post Title</th>
                     <th>Edit</th>
-                  
+
                 </tr>
             </thead>
-           
+
             <tbody>
                 @foreach ($pedningApproval as $pedningrequest)
                 <tr>
@@ -25,12 +25,12 @@
                     <td>{{ $pedningrequest->category->name }}</td>
                     <td>{{ $pedningrequest->name }}</td>
                     <td><a href="{{url('admin/post/'.$pedningrequest->id)}}" class="btn btn-success">Edit</a></td>
-                  
-                    
+
+
                 </tr>
                 @endforeach
-               
-                
+
+
             </tbody>
         </table>
     </div>

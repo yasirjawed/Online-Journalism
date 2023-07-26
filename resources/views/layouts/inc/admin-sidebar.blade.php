@@ -34,6 +34,7 @@
                     <div class="sb-nav-link-icon {{Request::Is('admin/dashboard/approvalRequest')?'active':'' }}"><i class="fas fa-address-book"></i></div>
                     Blog Approval Requests
                 </a>
+
                 <a class="nav-link {{Request::Is('admin/users')?'active':'' }}" href="{{url('admin/users')}}">
                     <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
                     User Management
@@ -43,7 +44,7 @@
         </div>
         <div class="sb-sidenav-footer">
             <div class="small">Logged in as:</div>
-            Arsalan Siddiqui
+         {{ Auth::user()->name}}
         </div>
     </nav>
 </div>

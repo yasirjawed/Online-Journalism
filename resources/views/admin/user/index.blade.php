@@ -28,7 +28,7 @@
                             <td>{{$item->id}}</td>
                             <td>{{$item->name}}</td>
                             <td>{{$item->email}}</td>
-                            <td>{{$item->role_as=='1'? 'Admin':'User'}}</td>
+                            <td>{{$item->role_as=='1'?'Admin':(($item->role_as=='2')?'Journalist':'User')}}</td>
                             <td><a href="{{url('admin/users/'.$item->id)}}" class="btn btn-success">Edit</a></td>
 
                         </tr>
