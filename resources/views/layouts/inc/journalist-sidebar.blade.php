@@ -7,6 +7,10 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                     Dashboard
                 </a>
+                <a class="nav-link" href="{{url('/')}}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                    Online Journalism Website
+                </a>
                 <a class="nav-link collapsed {{Request::Is('journalist/add-post') || Request::Is('admin/post') || Request::Is('admin/post/*') ? 'show active':''}}" href="#" data-bs-toggle="collapse" data-bs-target="#collapsepost" aria-expanded="false" aria-controls="collapseLayouts">
                     <div class="sb-nav-link-icon"><i class="fas fa-blog"></i></div>
                     Posts
@@ -18,6 +22,14 @@
                         <a class="nav-link {{Request::Is('journalist/post') || Request::Is('journalist/post/*') ?'active':'' }}" href="{{url('journalist/post')}}">View Posts</a>
                     </nav>
                 </div>
+                <a class="nav-link {{Request::Is('journalist/pending_post')?'active':'' }}" href="{{url('journalist/pending_post')}}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                    Pending Post
+                </a>
+                <a class="nav-link {{Request::Is('journalist/rejected_post')?'active':'' }}" href="{{url('journalist/rejected_post')}}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                    Rejected Post <span style="color: red"> @php Session::get('variableName'); @endphp</span>
+                </a>
             </div>
 
         </div>

@@ -171,7 +171,18 @@ input#openSidebarMenu{
 
     border: 2px solid #df5b57;
   }
+  .button-nav2{
+    position: absolute;
+    left: 90%;
+    transform: translatex(-50%);
+
+    border: 2px solid #df5b57;
+  }
   .button-nav:hover{
+    color: white;
+    font-weight: bold;
+}
+.button-nav2:hover{
     color: white;
     font-weight: bold;
 }
@@ -180,8 +191,17 @@ text-decoration: none;
 color: #df5b57;
 
 }
+.button-nav2 a{
+text-decoration: none;
+color: #df5b57;
+
+}
 
 .button-nav a:hover{
+color: white;
+font-weight: bold;
+}
+.button-nav2 a:hover{
 color: white;
 font-weight: bold;
 }

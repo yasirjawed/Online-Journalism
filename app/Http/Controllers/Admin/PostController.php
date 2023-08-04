@@ -24,6 +24,7 @@ class PostController extends Controller
 
     public function store(PostFormRequest $request){
         $data = $request -> validated();
+        // ddd($data);
        $post = new post;
        $post->category_id = $data['category_id'];
        $post->name = $data['name'];
@@ -33,6 +34,8 @@ class PostController extends Controller
        $post->meta_title = $data['meta_title'];
        $post->meta_description = $data['meta_description'];
        $post->meta_keyword = $data['meta_keyword'];
+       $post->active_status = $data['active_status'];
+       $post->status_remarks = $data['Rejection'];
        $post->status = $request->status == true ? '1':'0';
        $post->created_by= Auth::user()->id;
        $post->save();
@@ -42,6 +45,11 @@ class PostController extends Controller
         $posts= Post::find($post_id);
         $category=Category::where('status','0')->get();
         return view('admin.post.edit',compact('posts','category'));
+    }
+    public function process($post_id){
+        $posts= Post::find($post_id);
+        $category=Category::where('status','0')->get();
+        return view('admin.approval.process',compact('posts','category'));
     }
     public function update(PostFormRequest $request ,$post_id){
         $data = $request -> validated();
@@ -53,7 +61,27 @@ class PostController extends Controller
        $post->yt_iframe = $data['yt_iframe'];
        $post->meta_title = $data['meta_title'];
        $post->meta_description = $data['meta_description'];
+       $post->active_status = $data['active_status'];
+       $post->status_remarks = $data['Rejection'];
        $post->meta_keyword = $data['meta_keyword'];
+       $post->status = $request->status == true ? '1':'0';
+    //    $post->created_by= Auth::user()->id;
+       $post->update();
+       return redirect('admin/post')->with('message','Post Updated Successfully');
+    }
+    public function update_process(PostFormRequest $request ,$post_id){
+        $data = $request -> validated();
+       $post = post::find($post_id);
+       $post->category_id = $data['category_id'];
+       $post->name = $data['name'];
+       $post->slug = Str::slug($data['slug']);
+       $post->description = $data['description'];
+       $post->yt_iframe = $data['yt_iframe'];
+       $post->meta_title = $data['meta_title'];
+       $post->meta_description = $data['meta_description'];
+       $post->meta_keyword = $data['meta_keyword'];
+       $post->active_status = $data['active_status'];
+       $post->status_remarks = $data['Rejection'];
        $post->status = $request->status == true ? '1':'0';
     //    $post->created_by= Auth::user()->id;
        $post->update();

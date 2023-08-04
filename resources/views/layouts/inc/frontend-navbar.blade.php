@@ -22,14 +22,23 @@
           </ul>
 
           <a class="navbar-brand navbar-logo-class" href="#"><img src="{{url('images/logo-nav.png')}}" id="logo-navbar" class="image-fluid" style="display:none"></a>
-          @if (Auth::check())
-            <button type="button" class="btn  button-nav" ><a href="/{{route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" style="">Logout</a></button>
-            <form action="{{route('logout')}}" id="logout-form" class="d-none" method="post">
-                @csrf
-            </form>
-          @else
-          <button type="button" class="btn  button-nav" ><a href="{{url('/login')}}" style="">Login / Signup</a></button>
+            @if (Auth::check())
+
+                <button type="button" class="btn  button-nav" ><a href="/{{route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" style="">Logout</a></button>
+                <form action="{{route('logout')}}" id="logout-form" class="d-none" method="post">
+                    @csrf
+                </form>
+
+                @if (Auth::user()->role_as=='1')
+                    <button type="button" class="btn  button-nav2" ><a href="{{url('admin/dashboard')}}" style="">Dashboard</a></button>
+                @elseif(Auth::user()->role_as=='0')
+                     @else
+                    <button type="button" class="btn  button-nav2" ><a href="{{url('journalist/dashboard')}}" style="">Dashboard</a></button>
+                @endif
+            @else
+                <button type="button" class="btn  button-nav" ><a href="{{url('/login')}}" style="">Login / Signup</a></button>
             @endif
+
 
 
 

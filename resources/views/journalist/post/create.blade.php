@@ -61,12 +61,20 @@
                 <h6 class="d-none">STATUS MODE</h6>
                 <div class="row">
 
-                    <div class="col-md-3 mb-3 d-none">
-                        <label for="">Status</label>
-                        <input type="checkbox" name="status" checked>
+                   <div class="col-md-3 mb-3 d-none">
+                        <label for="">Hidden</label>
+                        <input type="checkbox" name="status" >
                     </div>
-                    <div class="col-md-">
-                        <button class="btn btn-primary" type="submit">Save Category</button>
+                    <div class="col-md-12 mb-12 d-none">
+                        <label for="">Process_Status</label>
+                        <select name="active_status" id="" class="form-control">
+                            <option value="0">Pending</option>
+                            <option value="1">Accepted</option>
+                            <option value="2">Rejected</option>
+                        </select>
+                    </div>
+                    <div class="col-md-12 mt-5">
+                        <button class="btn btn-primary" type="submit">Save Post</button>
                     </div>
                 </div>
 

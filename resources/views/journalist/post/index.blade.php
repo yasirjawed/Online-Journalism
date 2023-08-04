@@ -29,7 +29,7 @@
                             <td>{{$item->id}}</td>
                             <td>{{$item->category->name}}</td>
                             <td>{{$item->name}}</td>
-                            <td>{{$item->status=='1'? 'Hidden':'Visible'}}</td>
+                            <td>{{$item->active_status=='0'? 'Pending':($item->active_status=='1'?'Accepted':'Rejected')}}</td>
                             <td><a href="{{url('journalist/post/'.$item->id)}}" class="btn btn-success">Edit</a></td>
                             <td><a href="{{url('journalist/delete-post/'.$item->id)}}" class="btn btn-danger">Delete</a></td>
 

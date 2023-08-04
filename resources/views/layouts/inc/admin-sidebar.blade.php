@@ -7,6 +7,10 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                     Dashboard
                 </a>
+                <a class="nav-link" href="{{url('/')}}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                    Online Journalism Website
+                </a>
                 <a class="nav-link collapsed  {{Request::Is('admin/add-category') || Request::Is('admin/category') || Request::Is('admin/edit-category/*') ? 'active':''}}" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                     <div class="sb-nav-link-icon"><i class="fas fa-layer-group"></i></div>
                     Category

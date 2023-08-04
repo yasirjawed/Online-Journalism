@@ -49,9 +49,9 @@
     <script src="//cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
    <script>
         $(document).ready(function() {
-            // $("#MySummerNote").summernote({
-            //     height: 250,
-            // });
+            $("#MySummerNote").summernote({
+                height: 250,
+            });
             $('.dropdown-toggle').dropdown();
         });
     </script>
@@ -59,6 +59,18 @@
        $('#myDataTable').DataTable();
        $('#approvalreq').DataTable();
     </script>
+    <script>
+        $('#active_status').change(function(){
+            $value=$('#active_status').val();
+            if($value=='2'){
+                $('#process_description').css('display','');
+                $('.RejectionPara').val("");
+            }else{
+                $('.RejectionPara').val("");
+                $('#process_description').css('display','none');
+            }
+        });
+     </script>
     @yield('scripts')
 </body>
 </html>

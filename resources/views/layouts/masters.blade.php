@@ -49,15 +49,16 @@
     <script src="//cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
    <script>
         $(document).ready(function() {
-            // $("#MySummerNote").summernote({
-            //     height: 250,
-            // });
+            $("#MySummerNote").summernote({
+                height: 250,
+            });
             $('.dropdown-toggle').dropdown();
         });
     </script>
     <script>
        $('#myDataTable').DataTable();
        $('#approvalreq').DataTable();
+    //    console.log(totalpostCount);
     </script>
     @yield('scripts')
 </body>

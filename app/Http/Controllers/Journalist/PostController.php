@@ -20,6 +20,15 @@ class PostController extends Controller
         $category=Category::where('status','0')->get();
         return view('journalist.post.create',compact('category'));
     }
+    public function pending_post(){
+        $posts= post::where('created_by',Auth::user()->id)->where('active_status','0')->get();
+        return view('journalist.post.pending_post',compact('posts'));
+    }
+    public function rejected_post(){
+        $posts= post::where('created_by',Auth::user()->id)->where('active_status','2')->get();
+        // ddd($posts);
+        return view('journalist.post.rejected_post',compact('posts'));
+    }
     public function store(PostFormRequest $request){
         $data = $request -> validated();
        $post = new post;
@@ -31,6 +40,8 @@ class PostController extends Controller
        $post->meta_title = $data['meta_title'];
        $post->meta_description = $data['meta_description'];
        $post->meta_keyword = $data['meta_keyword'];
+       $post->active_status = '0';
+       $post->status_remarks = null;
        $post->status = $request->status == true ? '1':'0';
        $post->created_by= Auth::user()->id;
        $post->save();
@@ -52,6 +63,8 @@ class PostController extends Controller
        $post->meta_title = $data['meta_title'];
        $post->meta_description = $data['meta_description'];
        $post->meta_keyword = $data['meta_keyword'];
+        $post->active_status = '0';
+        $post->status_remarks = null;
     //    $post->created_by= Auth::user()->id;
        $post->update();
        return redirect('journalist/post')->with('message','Post Updated Successfully');

@@ -10,7 +10,7 @@ use App\Http\Controllers\Controller;
 class ApprovalRequest extends Controller
 {
    public function index(){
-        $pedningApproval=post::where('status','1')->get();;
+        $pedningApproval=post::where('active_status','0')->get();
         // ddd($pedningApproval);
         return view('admin.approval.index', compact('pedningApproval'));
    }

@@ -22,6 +22,8 @@ return new class extends Migration
             $table->mediumText('meta_description')->nullable();
             $table->mediumText('meta_keyword')->nullable();
             $table->tinyInteger('status')->default('0');
+            $table->tinyInteger('active_status')->default('0');
+            $table->mediumText('status_remarks')->nullable();
             $table->integer('created_by');
             $table->timestamps();
         });

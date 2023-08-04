@@ -50,6 +50,13 @@ class PostFormRequest extends FormRequest
                  'nullable',
                  'string'
                 ],
+                'active_status'=>[
+                    'nullable'
+                ],
+                'Rejection'=>[
+                    'nullable',
+                    'string'
+                ],
                 'meta_keyword'=>[
                  'nullable',
                  'string'
@@ -57,6 +64,9 @@ class PostFormRequest extends FormRequest
                 'status'=>[
                  'nullable'
                 ],
+                'rejected'=>[
+                    'nullable'
+                   ],
             ];
 
              return $rules;

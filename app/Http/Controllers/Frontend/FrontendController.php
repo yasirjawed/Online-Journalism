@@ -12,7 +12,7 @@ class FrontendController extends Controller
 {
     public function index(){
         $allCategories=Category::where('status','0')->get();
-        $Latest_Posts=post::where('status','0')->orderBy('created_at','DESC')->get()->take(15);
+        $Latest_Posts=post::where('active_status','1')->orderBy('created_at','DESC')->get()->take(15);
         // ddd(Auth::user()->id);
         return view('frontend.index',compact('allCategories','Latest_Posts'));
     }

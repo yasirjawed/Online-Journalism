@@ -18,7 +18,10 @@ class post extends Model
         'meta_title',
         'meta_description',
         'meta_keyword',
+        'active_status',
+        'status_remarks',
         'status',
+        'rejected',
         'created_by'
         ];
         public function category(){

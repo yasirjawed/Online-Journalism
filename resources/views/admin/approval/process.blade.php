@@ -1,4 +1,4 @@
-@extends('layouts.masters')
+@extends('layouts.master')
 @section('title','Admin Edit Post')
 @section('content')
 
@@ -17,7 +17,7 @@
         </div>
         <div class="card-body">
 
-            <form action="{{url('journalist/update-post/'.$posts->id)}}" method="POST" enctype="multipart/form-data">
+            <form action="{{url('admin/update-post-approval/'.$posts->id)}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="mb-3">
@@ -64,22 +64,27 @@
                     <label for="">Meta Keywords</label>
                     <textarea name="meta_keyword" rows="3" class="form-control">{!! $posts->meta_keyword !!}</textarea>
                 </div>
-                <h6 class="d-none">STATUS MODE</h6>
+                <h6>STATUS MODE</h6>
                 <div class="row">
 
                     <div class="col-md-3 mb-3 d-none">
-                        <label for="">Status</label>
+                        <label for="">Hidden</label>
                         <input type="checkbox" name="status" {{$posts->status=='1' ? 'checked':''}}>
                     </div>
-                    <div class="col-md-12 mb-12" id="process_description" style="{{$posts->active_status!='2'?'display:none;':''}}">
-                        <label for="">Rejection Purpose</label>
-                        <textarea name="Rejection" id="MySummerNote" rows="5" class="form-control RejectionPara" readonly>{{ $posts->status_remarks }}</textarea>
+                    <div class="col-md-12 mb-12">
+                        <label for="">Process_Status</label>
+                        <select name="active_status" id="active_status" class="form-control">
+                            <option value="0">Pending</option>
+                            <option value="1">Accepted</option>
+                            <option value="2">Rejected</option>
+                        </select>
                     </div>
-                    @if ($posts->active_status=='2')
-                    <p style="color: red">Please read the Rejection Purpose And Submit Again</p>
-                    @endif
+                    <div class="col-md-12 mb-12" style="display:none" id="process_description">
+                        <label for="">Rejection Purpose</label>
+                        <textarea name="Rejection" id="MySummerNote" rows="5" class="form-control"></textarea>
+                    </div>
                     <div class="col-md-12 mt-5">
-                        <button class="btn btn-primary" type="submit">{{$posts->active_status=='2'?'ReSubmit':'Save Post'}}</button>
+                        <button class="btn btn-primary" type="submit">Save Category</button>
                     </div>
                 </div>
 

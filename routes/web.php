@@ -26,7 +26,9 @@ Route::prefix('admin')->middleware('auth','isAdmin')->group(function(){
     Route::get('add-post', [App\Http\Controllers\admin\PostController::class, 'create']);
     Route::post('add-post', [App\Http\Controllers\admin\PostController::class, 'store']);
     Route::get('post/{post_id}', [App\Http\Controllers\admin\PostController::class, 'edit']);
+    Route::get('approval/{post_id}', [App\Http\Controllers\admin\PostController::class, 'process']);
     Route::put('update-post/{post_id}', [App\Http\Controllers\admin\PostController::class, 'update']);
+    Route::put('update-post-approval/{post_id}', [App\Http\Controllers\admin\PostController::class, 'update_process']);
     Route::get('delete-post/{post_id}', [App\Http\Controllers\admin\PostController::class, 'destroy']);
     Route::get('/users', [App\Http\Controllers\Admin\UserController::class, 'index']);
     Route::get('users/{user_id}', [App\Http\Controllers\admin\UserController::class, 'edit']);
@@ -35,6 +37,8 @@ Route::prefix('admin')->middleware('auth','isAdmin')->group(function(){
 Route::prefix('journalist')->middleware('auth','isJournalist')->group(function(){
     Route::get('/dashboard', [App\Http\Controllers\Journalist\DashboardController::class, 'index']);
     Route::get('post', [App\Http\Controllers\Journalist\PostController::class, 'index']);
+    Route::get('pending_post', [App\Http\Controllers\Journalist\PostController::class, 'pending_post']);
+    Route::get('rejected_post', [App\Http\Controllers\Journalist\PostController::class, 'rejected_post']);
     Route::get('add-post', [App\Http\Controllers\Journalist\PostController::class, 'create']);
     Route::post('add-post', [App\Http\Controllers\Journalist\PostController::class, 'store']);
     Route::get('post/{post_id}', [App\Http\Controllers\Journalist\PostController::class, 'edit']);

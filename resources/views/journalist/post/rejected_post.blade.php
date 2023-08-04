@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.masters')
 @section('title','View Posts')
 @section('content')
 
@@ -6,8 +6,8 @@
         <div class="card mt-4">
 
             <div class="card-header">
-                <h4>View Posts
-                <a href="{{ url('admin/add-post') }}" class="btn btn-primary btn-sm float-end">Add Posts</a></h4>
+                <h4>Rejected Posts
+                {{-- <a href="{{ url('journalist/add-post') }}" class="btn btn-primary btn-sm float-end">Add Posts</a></h4> --}}
             </div>
             <div class="card-body">
                 @if(session('message'))
@@ -21,7 +21,6 @@
 
                     <td style="width:10%">Status</td>
                     <td style="width:10%">Edit</td>
-                    <td style="width:10%">Delete</td>
                 </thead>
                 <tbody>
                     @foreach ($posts as $item)
@@ -29,9 +28,9 @@
                             <td>{{$item->id}}</td>
                             <td>{{$item->category->name}}</td>
                             <td>{{$item->name}}</td>
-                            <td>{{$item->active_status=='0'? 'Pending':($item->active_status=='1'?'Accepted':'Rejected')}}</td>
-                            <td><a href="{{url('admin/post/'.$item->id)}}" class="btn btn-success">Edit</a></td>
-                            <td><a href="{{url('admin/delete-post/'.$item->id)}}" class="btn btn-danger">Delete</a></td>
+                            <td>{{$item->active_status=='2'?'Rejected':''}}</td>
+                            <td><a href="{{url('journalist/post/'.$item->id)}}" class="btn btn-success">ReSubmit</a></td>
+
 
                         </tr>
                     @endforeach

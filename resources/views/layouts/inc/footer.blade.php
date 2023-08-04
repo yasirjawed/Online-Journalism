@@ -1,4 +1,4 @@
-<div class="py-5 bg-dark text-white">
+<div class=" bg-dark text-white">
     <div class="container">
         <div class="row">
             <div class="col-md-4">
@@ -25,7 +25,7 @@
     </div>
 </div>
 <div class="py-2 bg-gray">
-    <div class="container text-ce">
+    <div class="container text-center">
         <p class="mb-0">
             &copy; Copyright at <a href="www.fundaofwebit.com">Online Journalism</a>
             All right reserved.

@@ -24,7 +24,7 @@
                     <td>{{ $pedningrequest->user->name }}</td>
                     <td>{{ $pedningrequest->category->name }}</td>
                     <td>{{ $pedningrequest->name }}</td>
-                    <td><a href="{{url('admin/post/'.$pedningrequest->id)}}" class="btn btn-success">Edit</a></td>
+                    <td><a href="{{url('admin/approval/'.$pedningrequest->id)}}" class="btn btn-success">Edit</a></td>
 
 
                 </tr>
