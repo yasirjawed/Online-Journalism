@@ -8,6 +8,8 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Artisan;
 use App\Http\Requests\Journalist\PostFormRequest;
 
 class PostController extends Controller
@@ -15,6 +17,7 @@ class PostController extends Controller
     public function index(){
         $posts= post::where('created_by',Auth::user()->id)->get();
         return view('journalist.post.index',compact('posts'));
+        
     }
     public function create(){
         $category=Category::where('status','0')->get();
@@ -37,6 +40,12 @@ class PostController extends Controller
        $post->slug = Str::slug($data['slug']);
        $post->description = $data['description'];
        $post->yt_iframe = $data['yt_iframe'];
+        if($request->hasfile('image')){
+            $file= $request->file('image');
+            $filename= time() . '.' . $file->getClientOriginalExtension();
+            $file->move('uploads/posts/', $filename);
+            $post->image = $filename;
+        }
        $post->meta_title = $data['meta_title'];
        $post->meta_description = $data['meta_description'];
        $post->meta_keyword = $data['meta_keyword'];
@@ -60,6 +69,16 @@ class PostController extends Controller
        $post->slug = Str::slug($data['slug']);
        $post->description = $data['description'];
        $post->yt_iframe = $data['yt_iframe'];
+        if($request->hasfile('image')){
+            $destination = 'uploads/posts/'. $post->image;
+            if(File::exists($destination)){
+                File::delete($destination);
+            }
+            $file= $request->file('image');
+            $filename= time() . '.' . $file->getClientOriginalExtension();
+            $file->move('uploads/posts/', $filename);
+            $post->image = $filename;
+        }
        $post->meta_title = $data['meta_title'];
        $post->meta_description = $data['meta_description'];
        $post->meta_keyword = $data['meta_keyword'];
@@ -69,9 +88,16 @@ class PostController extends Controller
        $post->update();
        return redirect('journalist/post')->with('message','Post Updated Successfully');
     }
-    public function destroy($post_id){
-        $post = post::find($post_id);
+    public function destroy(Request $request){
+        $post = post::find($request->category_delete_id);
         if($post){
+            if($post->image!=null){
+                $destination = 'uploads/posts/'. $post->image;
+                if(File::exists($destination)){
+                    File::delete($destination);
+                }
+
+            }
             $post->delete();
             return redirect('journalist/post')->with('message','Post deleted succesfully!');
         }else{

@@ -7,6 +7,10 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                     Dashboard
                 </a>
+                <a class="nav-link {{Request::Is('admin/profile')?'active':'' }}" href="{{url('admin/profile')}}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                    Profile
+                </a>
                 <a class="nav-link" href="{{url('/')}}">
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                     Online Journalism Website
@@ -48,7 +52,7 @@
         </div>
         <div class="sb-sidenav-footer">
             <div class="small">Logged in as:</div>
-         {{ Auth::user()->name}}
+                {{Auth::user()->name}}
         </div>
     </nav>
 </div>

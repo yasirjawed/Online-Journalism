@@ -3,6 +3,24 @@
 @section('meta_description',$post->meta_description)
 @section('meta_keyword',$post->meta_keyword)
 @section('content')
+
+<style>
+@media only screen and (min-width: 100px) and (max-width: 991px) {
+#post_desc{
+padding: 0 !important;
+}
+#post_img{
+padding: 0 !important;
+}
+#post_corres{
+padding: 0 !important;
+}
+#post_name{
+padding: 0 !important;
+}
+
+}
+</style>
 <div class="container">
 
 
@@ -18,20 +36,32 @@
     </div>
     <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"  style="display:grid;justify-content: center;">
-            <img src="{{url('images/blogs.jpg')}}" id="blog2" class="image-fluid">
+            @if($post->image==null)
+                <img src="{{url('images/blogs.jpg')}}" id="blog2" class="image-fluid" style="width:100%;">
+            @else
+                <img src="{{ asset('uploads/posts/'.$post->image) }}" id="blog2" class="image-fluid" style="width:100%;">
+            @endif
         </div>
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"  style="display:grid;text-align:center;padding:0px 200px 0px 200px;margin-top:70px">
+
+
+
+
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"  style="display:grid;text-align:center;padding:0px 200px 0px 200px;margin-top:70px" id="post_name">
             <p style="font-family: 'Montserrat', sans-serif;font-size:25px"><b>{{ $post->name }}</b></p>
         </div>
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"  style="display:grid;text-align:center;padding:0px 200px 0px 200px;font-weight:800;">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"  style="display:grid;text-align:center;padding:0px 200px 0px 200px;font-weight:800;" id="post_corres">
             <h1 style="font-family: 'Montserrat', sans-serif;">The best of The Correspondent – recommended by the people who made the stories</h1>
         </div>
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"  style="display:grid;justify-content:right;text-align:center;padding:0px 200px 0px 200px;font-weight:800;">
-            <img src="{{url('images/persons.png')}}" id="blog2" class="image-fluid">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"  style="display:grid;justify-content:right;text-align:center;padding:0px 200px 0px 200px;font-weight:800;" id="post_img">
+            @if ($post->user->image==null)
+                <img src="{{url('images/persons.png')}}" id="blog2" class="image-fluid">
+            @else
+                <img src="{{ asset('uploads/profile/'.$post->user->image) }}" id="blog2" class="image-fluid" style="min-height: 100px;max-height:100px">
+            @endif
         <button class="personbuttons" style="background-color:white;color:black;font-family: 'Montserrat', sans-serif;border:none;margin-top:8px;font-weight:bold">{{$post->user->name}}</button>
         </div>
 
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"  style="display:grid;text-align:center;padding:0px 200px 0px 200px;font-weight:bold;margin-top:70px">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"  style="display:grid;text-align:center;padding:0px 200px 0px 200px;font-weight:bold;margin-top:70px" id="post_desc">
         <p style="font-family: 'Montserrat', sans-serif;font-size:25px">{!! $post->description !!}</p>
         </div>
     </div>

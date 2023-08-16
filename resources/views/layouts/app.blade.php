@@ -21,6 +21,10 @@
     <link href="{{ asset('assets/css/custom.css')}}" rel="stylesheet">
     <link href="{{ asset('assets/css/owl.carousel.min.css')}}" rel="stylesheet">
     <link href="{{ asset('assets/css/owl.theme.default.min.css')}}" rel="stylesheet">
+    {{-- <script src="https://use.fontawesome.com/1dcaae355e.js"></script> --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css" integrity="sha384-jLKHWM3JRmfMU0A5x5AkjWkw/EYfGUAGagvnfryNV3F9VqM98XiIH7VBGVoxVSc7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <style>
         *{
     box-sizing: border-box;
@@ -62,6 +66,7 @@ h1{
 }
 #sidebarMenu {
     height: 100%;
+    padding-bottom: 90px;
     position: fixed;
     left: 0;
     top: 0;
@@ -71,7 +76,7 @@ h1{
     transform: translateX(-330px);
     transition: transform 250ms ease-in-out;
     background: white;
- z-index: 100;
+    z-index: 100;
     color: black;
 }
 .menu{
@@ -102,7 +107,7 @@ h1{
 .menu2 li a{
     color: black;
     display: block;
-    padding: 15px;
+    padding:15px;
     font-size: 12px;
     text-transform: uppercase;
     font-weight: bold;
@@ -438,22 +443,22 @@ a:link {
         var lastScrollTop = 0;
       function myFunc() {
           st = $(this).scrollTop();
-          if(st < lastScrollTop) {
+          if(st < lastScrollTop){
             $('#logo-navbar').hide();
-            $('.hiding-case-class').show(500);
-            }
-        else {
+            $('.hiding-case-class').show();
+            } else {
             $('.hiding-case-class').hide();
-            $('#logo-navbar').show(500);
+            $('#logo-navbar').show();
             // console.log('down 1');
         }
+
         lastScrollTop = st;
     }
     window.addEventListener("scroll", function () {
     myFunc();
 }, true);
 
-
 </script>
+@yield('scripting')
 </body>
 </html>

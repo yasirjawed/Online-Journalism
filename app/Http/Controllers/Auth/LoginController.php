@@ -28,18 +28,18 @@ class LoginController extends Controller
      * @var string
      */
     // protected $redirectTo = RouteServiceProvider::HOME;
-public function authenticated(){
-    if(Auth::user()->role_as=='1'){
-        return redirect('admin/dashboard')->with('status','Welcome to the admin dashboard');
-    }else if(Auth::user()->role_as=='0'){
-        return redirect('/')->with('status','You are in the Queue Wait till we grant you access to Online Journalism');
-    }else if(Auth::user()->role_as=='2'){
-        return redirect('journalist/dashboard')->with('status','Hey Entrepreneur, Post some good news!');
+    public function authenticated(){
+        if(Auth::user()->role_as=='1'){
+            return redirect('admin/dashboard')->with('status','Welcome to the admin dashboard');
+        }else if(Auth::user()->role_as=='0'){
+            return redirect('/')->with('status','You are in the Queue Wait till we grant you access to Online Journalism');
+        }else if(Auth::user()->role_as=='2'){
+            return redirect('journalist/dashboard')->with('status','Hey Entrepreneur, Post some good news!');
 
-    }else{
-        return redirect('/');
+        }else{
+            return redirect('/');
+        }
     }
-}
     /**
      * Create a new controller instance.
      *

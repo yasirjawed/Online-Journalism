@@ -30,6 +30,12 @@ class PostController extends Controller
        $post->name = $data['name'];
        $post->slug = Str::slug($data['slug']);
        $post->description = $data['description'];
+        if($request->hasfile('image')){
+            $file= $request->file('image');
+            $filename= time() . '.' . $file->getClientOriginalExtension();
+            $file->move('uploads/posts/', $filename);
+            $post->image = $filename;
+        }
        $post->yt_iframe = $data['yt_iframe'];
        $post->meta_title = $data['meta_title'];
        $post->meta_description = $data['meta_description'];
@@ -59,6 +65,17 @@ class PostController extends Controller
        $post->slug = Str::slug($data['slug']);
        $post->description = $data['description'];
        $post->yt_iframe = $data['yt_iframe'];
+       if($request->hasfile('image')){
+           $destination = 'uploads/posts/'. $post->image;
+            if(File::exists($destination)){
+                File::delete($destination);
+            }
+            $file= $request->file('image');
+            $filename= time() . '.' . $file->getClientOriginalExtension();
+            $file->move('uploads/posts/', $filename);
+            $post->image = $filename;
+        }
+
        $post->meta_title = $data['meta_title'];
        $post->meta_description = $data['meta_description'];
        $post->active_status = $data['active_status'];
@@ -83,13 +100,26 @@ class PostController extends Controller
        $post->active_status = $data['active_status'];
        $post->status_remarks = $data['Rejection'];
        $post->status = $request->status == true ? '1':'0';
+        
+    //    $to = "somebody@example.com";
+    //     $subject = "My subject";
+    //     $txt = "Hello world!";
+    //     $header = "From: webmaster@example.com";
+    //     mail($to,$subject,$txt,$header);
     //    $post->created_by= Auth::user()->id;
        $post->update();
        return redirect('admin/post')->with('message','Post Updated Successfully');
     }
-    public function destroy($post_id){
-        $post = post::find($post_id);
+    public function destroy(Request $request){
+        $post = post::find($request->category_delete_id);
         if($post){
+            if($post->image!=null){
+                $destination = 'uploads/posts/'. $post->image;
+                if(File::exists($destination)){
+                    File::delete($destination);
+                }
+
+            }
             $post->delete();
             return redirect('admin/post')->with('message','Post deleted succesfully!');
         }else{

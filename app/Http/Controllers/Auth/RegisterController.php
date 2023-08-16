@@ -29,7 +29,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    // protected $redirectTo = RouteServiceProvider::HOME;
 
     /**
      * Create a new controller instance.
@@ -68,6 +68,12 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+
         ]);
+        $to = $data['email'];
+        $subject = "Account Creation Notification";
+        $txt = "Hello ".$data['name'].' Your Account has been created on Online Journalism Pakistan but you are currently in waitlist!';
+        $header = "From:admin@onlinejournalism.com";
+        mail($to,$subject,$txt,$header);
     }
 }

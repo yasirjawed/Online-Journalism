@@ -61,10 +61,10 @@
                         <th>Joined At</th>
                         <th>Role</th>
                         <th>Edit</th>
-                      
+
                     </tr>
                 </thead>
-               
+
                 <tbody>
                     @foreach ($TotalUsers as $user)
                     <tr>
@@ -74,12 +74,12 @@
                         <td>{{ $user->created_at->format('d-m-Y') }}</td>
                         <td>{{ $user->role_as=='1'?'Admin':'User'}}</td>
                         <td><a href="{{url('admin/users/'.$user->id)}}" class="btn btn-success">Edit</a></td>
-                      
-                        
+
+
                     </tr>
                     @endforeach
-                   
-                    
+
+
                 </tbody>
             </table>
         </div>
@@ -98,10 +98,10 @@
                         <th>Category</th>
                         <th>Post Title</th>
                         <th>Edit</th>
-                      
+
                     </tr>
                 </thead>
-               
+
                 <tbody>
                     @foreach ($pedningApproval as $pedningrequest)
                     <tr>
@@ -109,12 +109,12 @@
                         <td>{{ $pedningrequest->category->name }}</td>
                         <td>{{ $pedningrequest->name }}</td>
                         <td><a href="{{url('admin/post/'.$pedningrequest->id)}}" class="btn btn-success">Edit</a></td>
-                      
-                        
+
+
                     </tr>
                     @endforeach
-                   
-                    
+
+
                 </tbody>
             </table>
         </div>

@@ -67,6 +67,10 @@ class PostFormRequest extends FormRequest
                 'rejected'=>[
                     'nullable'
                    ],
+                   'image'=>[
+                    'nullable',
+                    'mimes:jpeg,jpg,png'
+                   ]
             ];
 
              return $rules;

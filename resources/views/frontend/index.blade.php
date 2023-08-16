@@ -33,38 +33,52 @@
                 <h4>Latest Posts</h4>
                 <div class="underline"></div>
             </div>
-            @foreach ($Latest_Posts as $Latest_Posts_per)
-                <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 pt-3">
-                    <a href="{{url('tutorial/'.$Latest_Posts_per->category->slug.'/'.$Latest_Posts_per->slug)}}" class="text-decoration-none">
-                        <div class="card">
-                            <img class="card-img-top" src="{{url('images/blogs.jpg')}}" alt="Card image cap">
-                            <div class="card-body blogs">
-                                <div class="col-md-12">
-                                    <h5 class="card-title" class="top-name">{{$Latest_Posts_per->name}}</h5>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6" style="margin:auto 0;color:red">
-                                        <p style="font-size:15px">Created On:{{$Latest_Posts_per->created_at->format('d-m-y')}}</p>
+            @if(count($Latest_Posts)>0)
+                @foreach ($Latest_Posts as $Latest_Posts_per)
+                    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 pt-3">
+                        <a href="{{url('tutorial/'.$Latest_Posts_per->category->slug.'/'.$Latest_Posts_per->slug)}}" class="text-decoration-none">
+                            <div class="card">
+                                @if($Latest_Posts_per->image==null)
+                                <img class="card-img-top card-img " src="{{ asset('uploads/posts/corres.jpg') }}" alt="Card image cap"  class="image-fluid" style="min-height:200px;height:200px;">
+                                @else
+                                <img class="card-img-top" src="{{ asset('uploads/posts/'.$Latest_Posts_per->image) }}" alt="Card image cap" style="min-height:200px;height:200px;">
+                                @endif
+                                    @php
+                                        $description = $Latest_Posts_per->description;
+                                        $str = strip_tags($description);
+                                    @endphp
+                                <div class="card-body blogs">
+                                    <div class="col-md-12">
+                                        <p class="card-title" class="top-name">{{ \Illuminate\Support\Str::limit($str, 150, $end='...') }}</p>
                                     </div>
-                                    <div class="col-md-6 ">
-                                        <div class="row">
-                                            <div class="col-md-12 text-center" style="margin:auto 0">
-                                                <img src="{{url('images/persons.png')}}" class="person" alt="" class="person-img">
-                                            </div>
-                                            <div class="col-md-12 text-center" style="margin:auto 0">
-                                                <p class="card-title" >- {{$Latest_Posts_per->user->name}}</p>
+                                    <div class="row">
+                                        <div class="col-md-6" style="margin:auto 0;color:red">
+                                            <p style="font-size:15px">Created On:{{$Latest_Posts_per->created_at->format('d-m-y')}}</p>
+                                        </div>
+                                        <div class="col-md-6 ">
+                                            <div class="row">
+                                                <div class="col-md-12 text-center" style="margin:auto 0">
+                                                    <img src="{{url('images/persons.png')}}" class="person" alt="" class="person-img">
+                                                </div>
+                                                <div class="col-md-12 text-center" style="margin:auto 0">
+                                                    <p class="card-title" >- {{$Latest_Posts_per->user->name}}</p>
+                                                </div>
                                             </div>
                                         </div>
+
                                     </div>
 
+
                                 </div>
-
-
                             </div>
-                        </div>
-                    </a>
-                </div>
-            @endforeach
+                        </a>
+                    </div>
+                @endforeach
+
+            @else
+                <h1>NO POSTS ARE AVAILABLE</h1>
+            @endif
+
         </div>
 
 
@@ -73,27 +87,6 @@
     </div>
 </div>
 
-<div class="py-5">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h4>Online Journalism Categories</h4>
-                <div class="underline"></div>
-            </div>
-            @foreach ($allCategories as $allcate_items)
-                <div class="col-md-3">
-                    <div class="card card-body mb-3" style="background-color:rgb(141, 3, 3);color:white">
-                        <a href="{{url('tutorial/'.$allcate_items->slug)}}" class="text-decoration-none">
-                            <h4 class="text-white mb-0">
-                                {{$allcate_items->name}}
-                            </h4>
-                        </a>
-                    </div>
-                </div>
 
-            @endforeach
-        </div>
-    </div>
-</div>
 
 @endsection

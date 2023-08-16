@@ -42,7 +42,13 @@
                     <textarea name="description" id="MySummerNote" rows="5" class="form-control"></textarea>
                 </div>
                 <div class="mb-3">
-                    <label for="">Youtube Iframe Link</label>
+                    <label for="">Image</label>
+                    <input type="file" name="image" required class="form-control" onchange="getImagePreview(event)" id="image-profile">
+                </div>
+                <div id="preview">
+                </div>
+                <div class="mb-3 d-none">
+                    <label for="" class="">Youtube Iframe Link</label>
                     <input type="text" name="yt_iframe" class="form-control">
                 </div>
                 <h6>SEO TAGS</h6>
@@ -88,5 +94,16 @@
         </div>
     </div>
 </div>
+<script>
+     function getImagePreview(event){
+        var image=URL.createObjectURL(event.target.files[0]);
+        var imagediv= document.getElementById('preview');
+        var newimg=document.createElement('img');
+        imagediv.innerHTML='';
+        newimg.src=image;
+        newimg.width="300";
+        imagediv.appendChild(newimg);
+    }
+</script>
 @endsection
 

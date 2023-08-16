@@ -18,7 +18,7 @@ class DashboardController extends Controller
     $totaluserCount= count($TotalUsers);
     $TotalCategories=Category::all();
     $totalcategoryCount= count($TotalCategories);
-    $pedningApproval=post::where('status','1')->get();
+    $pedningApproval=post::where('active_status','0')->get();
     $pendingcount= count($pedningApproval);
     return view('admin.dashboard',compact('totalpostCount','totaluserCount','totalcategoryCount','pendingcount','TotalUsers','pedningApproval'));
    }

@@ -2,6 +2,27 @@
 @section('title','View Posts')
 @section('content')
 
+<div class="modal fade" id="deletemodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form action="{{url('admin/delete-post')}}" method="POST">
+            @csrf
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Delete Post</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="category_delete_id" class="category_delete_id" id="category_id">
+                    <h5>Are you sure you want to delete this post?</h5>
+                </div>
+                <div class="modal-footer">
+                <button type="submit" class="btn btn-danger">Delete</button>
+                </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
     <div class="container-fluid px-4">
         <div class="card mt-4">
 
@@ -31,7 +52,8 @@
                             <td>{{$item->name}}</td>
                             <td>{{$item->active_status=='0'? 'Pending':($item->active_status=='1'?'Accepted':'Rejected')}}</td>
                             <td><a href="{{url('admin/post/'.$item->id)}}" class="btn btn-success">Edit</a></td>
-                            <td><a href="{{url('admin/delete-post/'.$item->id)}}" class="btn btn-danger">Delete</a></td>
+                            {{-- <td><a href="{{url('admin/delete-post/'.$item->id)}}" class="btn btn-danger">Delete</a></td> --}}
+                            <td><button class="btn btn-danger deletecategoryBtn" type="button" value="{{$item->id}}">Delete</button></td>
 
                         </tr>
                     @endforeach
@@ -42,5 +64,20 @@
         </div>
     </div>
 
+@endsection
+@section('scripts')
+<script>
+    $(document).ready(function (){
+        // $('.deletecategoryBtn').click(function(e){
+            $(document).on('click','.deletecategoryBtn',function(e){
+
+            // });
+            e.preventDefault();
+            var category_id = $(this).val();
+            $('#category_id').val(category_id);
+            $('#deletemodal').modal('show');
+        });
+    });
+</script>
 @endsection
 

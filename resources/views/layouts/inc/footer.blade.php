@@ -1,4 +1,4 @@
-<div class=" bg-dark text-white">
+<div class=" bg-dark text-white mt-5">
     <div class="container">
         <div class="row">
             <div class="col-md-4">
@@ -27,7 +27,7 @@
 <div class="py-2 bg-gray">
     <div class="container text-center">
         <p class="mb-0">
-            &copy; Copyright at <a href="www.fundaofwebit.com">Online Journalism</a>
+            &copy; Copyright at <a href="#">Online Journalism</a>
             All right reserved.
             Designed and Developed by Tech Empire Private Limited {{date('d-m-Y')}}
         </p>
