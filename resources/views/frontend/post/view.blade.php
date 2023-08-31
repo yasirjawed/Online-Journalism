@@ -73,16 +73,42 @@ padding: 0 !important;
                     <div class="underline"></div>
                 </div>
                 @foreach ($userPost as $userPost_per)
+                   
+
                     <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 pt-3">
                         <a href="{{url('tutorial/'.$userPost_per->category->slug.'/'.$userPost_per->slug)}}" class="text-decoration-none">
                             <div class="card">
-                                <img class="card-img-top" src="{{url('images/blogs.jpg')}}" alt="Card image cap">
+                                @if($userPost_per->image==null)
+                                <img class="card-img-top card-img " src="{{ asset('uploads/posts/corres.jpg') }}" alt="Card image cap"  class="image-fluid" style="min-height:200px;height:200px;">
+                                @else
+                                <img class="card-img-top" src="{{ asset('uploads/posts/'.$userPost_per->image) }}" alt="Card image cap" style="min-height:200px;height:200px;">
+                                @endif
+                                    @php
+                                        $description = $userPost_per->description;
+                                        $str = strip_tags($description);
+                                    @endphp
                                 <div class="card-body blogs">
-                                    <h5 class="card-title" class="top-name">{{$userPost_per->name}}</h5>
-                                    <div class="bottom-container">
-                                        <p class="card-title" >{{$userPost_per->user->name}}</p>
-                                        <img src="{{url('images/persons.png')}}" class="person" alt="" class="person-img">
+                                    <div class="col-md-12">
+                                        <p class="card-title" class="top-name">{{ \Illuminate\Support\Str::limit($str, 150, $end='...') }}</p>
                                     </div>
+                                    <div class="row">
+                                        <div class="col-md-6" style="margin:auto 0;color:red">
+                                            <p style="font-size:15px">Created On:{{$userPost_per->created_at->format('d-m-y')}}</p>
+                                        </div>
+                                        <div class="col-md-6 ">
+                                            <div class="row">
+                                                <div class="col-md-12 text-center" style="margin:auto 0">
+                                                    <img src="{{url('images/persons.png')}}" class="person" alt="" class="person-img">
+                                                </div>
+                                                <div class="col-md-12 text-center" style="margin:auto 0">
+                                                    <p class="card-title" >- {{$userPost_per->user->name}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
                                 </div>
                             </div>
                         </a>

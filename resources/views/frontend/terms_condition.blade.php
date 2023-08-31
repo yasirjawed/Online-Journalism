@@ -13,7 +13,7 @@
         height: auto;
         margin-top: -65px
     }
-    @media only screen and (min-width: 400px) and (max-width: 600px) {
+    @media only screen and (min-width: 300px) and (max-width: 600px) {
         .info{
             padding: 50px !important;
         }
